@@ -80,7 +80,7 @@ MIDDLEWARE_CLASSES = (
     'pagination.middleware.PaginationMiddleware',
 )
 
-ROOT_URLCONF = 'main-site.urls'
+ROOT_URLCONF = 'cutesite.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
