@@ -1,0 +1,37 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Add Some Cute Code" %}{% endblock %}
+
+{% block content_header %}{% trans "Add some code" %}{% endblock %}
+
+{% block body %}
+
+{% if form.errors %}
+<p class="error">Please correct the errors below:</p>
+{% endif %}
+
+<form method="post" action="">
+<dl>
+<dt><label for="id_title">Title: {% if form.title.errors %}<span class="error">{{ form.title.errors|join:", " }}</span>{% endif %}</label></dt>
+<dd>{{ form.title }}</dd>
+<dt><label for="id_language">Language:</label>  {{ form.language }}{% if form.language.errors %}<span class="error">  {{ form.language.errors|join:", " }}</span>{% endif %}</dt>
+<dt><label for="id_tag_list">Tags: {% if form.tag_list.errors %}<span class="error">{{ form.tag_list.errors|join:", " }}</span>{% endif %} </label></dt>
+<dd>{{ form.tag_list }} Use spaces between tag names, and hyphens for multiple words, like "tag1 tag2 tag3-with-long-name"</dd>
+<dt><label for="id_source">Code: {% if form.source.errors %}<span class="error">{{ form.source.errors|join:", " }}</span>{% endif %}</label></dt>
+<dd>{{ form.source }}</dd>
+<dt><label for="id_description">Description: {% if form.description.errors %}<span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}</label></dt>
+<dd>{{ form.description }}<br />
+
+<dt><input type="submit" value="Save" /></dt>
+</dl>
+</form>
+{% endblock %}
+
+{% block sidebar %}
+<p>Please be aware of any license on the code you post here..</p>
+
+
+{% endblock %}
+

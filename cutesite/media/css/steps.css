@@ -1,0 +1,55 @@
+/* @override http://localhost:8000/site_media/css/steps.css */
+
+#steps {
+  padding: 10px;
+}
+
+#step ul li {
+  clear: both;
+}
+
+/* step style */
+
+#step {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+#step p {
+  background: url(../images/projects-border.png) repeat-x left bottom;
+  padding-bottom: 10px;
+  margin: 0;
+}
+
+#step li {
+  padding: 3px 0 6px 110px;
+  list-style: none;
+  margin: 0 0 5px;
+}
+
+#step h3 {
+  font: bold 200%/100% Arial, Helvetica, sans-serif;
+  margin: 0 0 5px;
+  padding-top: 5px;
+}
+
+#step li.item1 h3 {
+  background: url(../images/projects-border.png) repeat-x left top;
+}
+
+#step .item1 {
+  background: url(../images/step1.png) no-repeat;
+}
+
+#step .item2 {
+  background: url(../images/step2.png) no-repeat;
+}
+
+#step .item3 {
+  background: url(../images/step3.png) no-repeat;
+}
+
+#step .item4 {
+  background: url(../images/step4.png) no-repeat;
+}

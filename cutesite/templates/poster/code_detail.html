@@ -1,0 +1,27 @@
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content_header %}{{ object.title }}{% endblock %}
+
+{% block main_content %}
+
+{{ object.code }}
+{% endblock %}
+
+{% block sidebar %}
+
+{{ object.description }}
+
+<dl>
+<dt>Author:</dt>
+<dd><a href="/users/{{ object.author.username }}/">{{ object.author.username }}</a></dd>
+<dt>Posted:</dt>
+<dd>{{ object.submitted|date:"F j, Y" }}</dd>
+<dt>Language:</dt>
+<dd><a href="{{ object.language.get_absolute_url }}">{{ object.language.name }}</a></dd>
+<dt>Tags:</dt>
+<dd>{% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> {% endfor %}</dd>
+</dl>
+
+<ul>
+
+{% endblock %}

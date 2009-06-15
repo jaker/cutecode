@@ -1,0 +1,24 @@
+{% block title %}All code written in {{ object.name }}{% endblock %}
+
+{% block content_header %}All code written in {{ object.name }}{% endblock %}
+
+{% block main_content %}
+{% if object_list %}
+<ul>
+{% for code in object_list %}
+<li><a href="{{ code.get_absolute_url }}">{{ code.title }}</a> by <a href="/users/{{ code.author.username }}/">{{ code.author.username }}</a> {{ code.submitted|timesince }} ago</li>
+{% endfor %}
+</ul>
+
+<p class="pagination">{% if has_previous %}<a href="?page={{ previous }}">&lt; Previous {{ results_per_page }}</a>{% endif %}  {% if has_next %}<a href="?page={{ next }}">Next {{ results_per_page }} &gt;</a>{% endif %}</p>
+{% else %}
+
+<p>No pieces of code written in {{ object.name }} yet.</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+<p>{{ hits }} code{{ hits|pluralize }} {% ifequal hits 1 %}is{% else %}are{% endifequal %} written in {{ object.name }} so far.</p>
+
+
+{% endblock %}

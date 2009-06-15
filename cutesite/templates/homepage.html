@@ -1,0 +1,59 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block extra_head_base %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/steps.css" />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+         $("#step li").each(function (i) {
+      		i = i+1;
+      		$(this).addClass("item"+i);
+         });
+      });
+     </script>
+
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
+{% block tab_id %}id="home_tab"{% endblock %}
+
+{% block body %}
+    {% blocktrans %}
+    <div id="steps">
+      <ol id="step">
+      	<li>
+      	  <h3>Sign Up</h3>
+      	  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc euismod adipiscing magna. Quisque sollicitudin nisi a nisi feugiat suscipit. Praesent molestie. Curabitur laoreet, augue in pharetra adipiscing, ipsum lectus blandit leo, quis viverra odio purus eget lectus. </p>
+      	</li>
+      	<li>
+      	  <h3>Post Code</h3>
+      	  <p>Cras vitae libero. Duis sed pede id erat laoreet varius. Ut felis est, aliquet ut, dictum at, consectetuer sed, ante. Mauris aliquam leo at pede pharetra condimentum. </p>
+      	</li>
+      	<li>
+      	  <h3>Rate Code</h3>
+      	  <p>Ut arcu mauris, blandit at, porttitor vel, scelerisque vitae, nunc. Vivamus consequat tellus. Vivamus sed magna ut urna dictum ultrices. Curabitur at libero molestie eros imperdiet semper. </p>
+      	</li>
+      	<li>
+      	  <h3>Revise Code</h3>
+      	  <p>Ut arcu mauris, blandit at, porttitor vel, scelerisque vitae, nunc. Vivamus consequat tellus. Vivamus sed magna ut urna dictum ultrices. Curabitur at libero molestie eros imperdiet semper. </p>
+      	</li>
+      </ol>
+      </div>
+    {% endblocktrans %}
+
+    {% if user.is_authenticated %}
+        {% url what_next as what_next_url %}
+        <p class="what_next">{% blocktrans %}Wondering <a href="{{ what_next_url }}">What Next</a>?{% endblocktrans %}</p>
+    {% else %}
+        {% url acct_signup as signup_url %}
+        {% url acct_login as login_url %}
+        <p>{% blocktrans %}You can <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+    {% endif %}
+
+{% endblock %}
