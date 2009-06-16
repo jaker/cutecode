@@ -3,6 +3,9 @@
 *.rej
 *~
 .#*
+#*#
 *.pyc
+*.db
 
 pinax-env/
+pinax-boot.py
