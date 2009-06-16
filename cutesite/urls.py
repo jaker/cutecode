@@ -17,6 +17,8 @@ tweets_feed_dict = {"feed_dict": {
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {"template": "homepage.html"}, name="home"),
 
+    (r'^cute/', include('poster.urls')),
+
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
     (r'^openid/(.*)', PinaxConsumer()),

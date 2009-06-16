@@ -150,6 +150,7 @@ INSTALLED_APPS = (
     'about',
     'django.contrib.admin',
 
+    'poster',
 )
 
 ABSOLUTE_URL_OVERRIDES = {
