@@ -92,5 +92,6 @@ def code_detail(request, code_id):
     """
     code = get_object_or_404(Code, pk=code_id)
     return render_to_response('poster/code_detail.html',
+                              { 'object': code },
                               context_instance=RequestContext(request))
 
