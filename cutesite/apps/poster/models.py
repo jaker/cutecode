@@ -17,6 +17,7 @@ class Language(models.Model):
     """
 
     name = models.CharField(max_length=50)
+    highlight_style = models.CharField(max_length=20)
     slug = models.SlugField(editable=False)
     mime_type = models.CharField(max_length=100)
 
