@@ -23,5 +23,12 @@
 </dl>
 
 <ul>
-
+{% if user.is_authenticated %}
+{% ifequal user.id object.author.id %}
+<li><a href="/cute/edit/{{ object.id }}/">edit</a></li>
+{% endifequal %}
+<li>rate</li>
+<li>favorite</li>
+<li>comment</li>
+{% endif  %}
 {% endblock %}
