@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'poster',
+    'threadedcomments',
 )
 
 ABSOLUTE_URL_OVERRIDES = {

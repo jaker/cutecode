@@ -19,6 +19,8 @@ urlpatterns = patterns('',
 
     (r'^cute/', include('poster.urls')),
 
+    (r'^threadedcomments/', include('threadedcomments.urls')),
+
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
     (r'^openid/(.*)', PinaxConsumer()),

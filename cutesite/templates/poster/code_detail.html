@@ -22,6 +22,12 @@
 <dd>{% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> {% endfor %}</dd>
 </dl>
 
+{% load comments_tag %}
+
+{% comments object %}
+
+
+
 <ul>
 {% if user.is_authenticated %}
 {% ifequal user.id object.author.id %}
