@@ -1,15 +1,14 @@
+{% extends "site_base.html" %}
+
 {% block title %}{{ object.title }}{% endblock %}
 
-{% block content_header %}{{ object.title }}{% endblock %}
-
-{% block main_content %}
-
-{{ object.code }}
+{% block extra_head_base %}
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shCore.css"/>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shThemeEmacs.css"/>
+    {% block extra_head %}{% endblock %}
 {% endblock %}
 
-{% block sidebar %}
-
-{{ object.description }}
+{% block body %}
 
 <dl>
 <dt>Author:</dt>
@@ -21,6 +20,24 @@
 <dt>Tags:</dt>
 <dd>{% for tag in object.tags.all %}<a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> {% endfor %}</dd>
 </dl>
+
+{{ object.code }}
+
+{{ object.description }}
+
+<pre class="brush: {{ object.language.highlight_name }}">
+  {{ object.source }}
+</pre>
+
+
+{% block extra_body_base %}
+  <script src="{{ MEDIA_URL }}js/comments.js" type="text/javascript"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/shCore.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/{{ object.language.highlight_script }}.js"></script>
+  <script type="text/javascript">SyntaxHighlighter.config.clipboardSwf = '{{ MEDIA_URL }}js/syntaxhighlighter/scripts/clipboard.swf';SyntaxHighlighter.all();</script>
+  {% block extra_body %}{% endblock %}
+{% endblock %}
+
 
 {% load comments_tag %}
 
