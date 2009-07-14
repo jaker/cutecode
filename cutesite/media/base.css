@@ -52,16 +52,45 @@ td {
 
 #content {
   clear: both;
-  margin: 0 auto;
   padding: 10px;
-  width: 800px;
-	background: #1d1d1d;
-	padding-bottom: 0px;
-	color: #d4d4d4;
-	font-size: 11px;
-	line-height: 1.6em;
-	text-shadow: #141414 0 1px 0;
-	border: 1px solid #2a2a2a;
+  background: #fff;
+  padding-bottom: 0px;
+  color: #172337;
+  font-size: 11px;
+  line-height: 1.6em;
+  border-style: none;
+  border-color: #2a2a2a;
+  border-left: 1px dotted #999697;
+  border-right: 1px dotted #999697;
+}
+
+/* @group Code Detail Header */
+
+div.voteTitle h1 {
+  margin-left: 1.0em;
+  padding-left: .5em;
+  display: block;
+}
+
+div.voteTitle code {
+  float: left;
+  font-size: 2em;
+}
+
+#codeSignature h2, #codeSignature h2 a {
+  color: #6CE26C;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+/* @end */
+
+div#paper {
+  margin: 0 auto;
+  width: 810px;
+  background-image: url(images/perf-edge.png);
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* footer text colour */
@@ -258,6 +287,8 @@ div.profile_info p {
 #subnav {
   margin: 0;
   padding: 0;
+
+
 /*
 
 border-bottom: 1px solid #9BC;

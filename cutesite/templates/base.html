@@ -47,18 +47,20 @@
         </div>
         <div id="subnav" class="clearfix">{% block subnav %}&nbsp;{% endblock %}</div>
 
-        <div id="content">
+        <div id="paper">
+          <div id="content">
 
             {% if messages %}
-                <ul id="messages">
-                    {% for message in messages %}
-                    <li id="message_{{ forloop.counter }}"><a href="#" onclick="$('#message_{{ forloop.counter }}').fadeOut(); return false;"><small>{% trans "clear" %}</small></a> {{ message }}</li>
-                    {% endfor %}
-                </ul>
+            <ul id="messages">
+              {% for message in messages %}
+              <li id="message_{{ forloop.counter }}"><a href="#" onclick="$('#message_{{ forloop.counter }}').fadeOut(); return false;"><small>{% trans "clear" %}</small></a> {{ message }}</li>
+              {% endfor %}
+            </ul>
             {% endif %}
 
             {% block body %}
             {% endblock %}
+          </div>
         </div>
 
         <div id="footer">{% block footer %}{% endblock %}</div>

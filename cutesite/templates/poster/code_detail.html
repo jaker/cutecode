@@ -8,16 +8,20 @@
 
 {% block extra_head_base %}
   <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shCore.css"/>
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shThemeEmacs.css"/>
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shThemeDefault.css"/>
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block body %}
 
-<h1>{{ object.title }}</h1>
-<h2><a href="{% url profile_detail object.author %}">{{ object.author }}</a></h2>
+<div id="codeSignature">
+  <div class="voteTitle"><code class="voteNumber">21.</code><h1>{{ object.title }}</h1></div>
+  <h2>// Created by <a href="{% url profile_detail object.author %}">{{ object.author }}</a></h2>
+</div>
 
-{{ object.description }}
+<div id="description">
+  {{ object.description }}
+</div>
 
 <pre class="brush: {{ object.language.highlight_name }}">
   {{ object.source }}
