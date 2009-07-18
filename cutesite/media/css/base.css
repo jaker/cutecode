@@ -1,28 +1,18 @@
-/* @override http://localhost:8000/site_media/base.css */
+/* @override http://localhost:8000/site_media/css/base.css */
 
 body {
   background-color: #333333;
-  margin: 40px;
-  margin: 0;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
   color: #333;
-  font: 10pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
-
-#container {
-  background-image: url(images/bg-grey.jpg);
-  background-repeat: no-repeat;
-  background-position: top center;
+  font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  font-size: 10pt;
   width: 1000px;
   min-height: 1000px;
   margin: auto;
   padding: 0px 30px;
+}
+
+html, body {
+  height: 100%;
 }
 
 a, a:visited {
@@ -50,7 +40,7 @@ td {
   padding: 0;
 }
 
-#content {
+div#body {
   clear: both;
   padding: 10px;
   background: #fff;
@@ -64,27 +54,6 @@ td {
   border-right: 1px dotted #999697;
 }
 
-/* @group Code Detail Header */
-
-div.voteTitle h1 {
-  margin-left: 1.0em;
-  padding-left: .5em;
-  display: block;
-}
-
-div.voteTitle code {
-  float: left;
-  font-size: 2em;
-}
-
-#codeSignature h2, #codeSignature h2 a {
-  color: #6CE26C;
-  text-decoration: none;
-  margin-top: 5px;
-}
-
-/* @end */
-
 div#paper {
   margin: 0 auto;
   width: 810px;
@@ -93,26 +62,31 @@ div#paper {
   padding-right: 30px;
 }
 
-/* footer text colour */
-
 #footer {
   color: #999;
-  margin: 50px auto;
+  
+
+/*
+
+footer text colour */
+    margin: 50px auto;
   padding: 10px;
   clear: both;
   width: 800px;
 }
 
-/* footer link colour */
-
 #footer a, #footer a:visited {
   color: #444;
-}
+/*
 
-/* footer link hover colour */
+footer link colour */
+}
 
 #footer a:hover {
   color: #777;
+/*
+
+footer link hover colour */
 }
 
 #site_wide_announcements {
@@ -155,6 +129,8 @@ input[type="text"], input[type="password"], textarea {
 
 #tabhead {
   position: relative;
+  padding: 0;
+  margin: 0;
 }
 
 #tabhead .logo {
@@ -167,24 +143,25 @@ input[type="text"], input[type="password"], textarea {
   width: auto;
 }
 
-/* login bar text colour */
-
 #tabhead .login {
   position: absolute;
-  top: 6px;
-  right: 15px;
+  top: 0px;
+  right: 0;
+  padding: 10px;
+  -moz-border-radius-bottomleft: 0.25em;
+  -moz-border-radius-bottomright: 0.25em;
+  -webkit-border-bottom-left-radius: 0.25em;
+  -webkit-border-bottom-right-radius: 0.25em;
+  background-color: rgba(125,121,123,0.59);
+  color: rgba(255,255,255,0.68);
 }
-
-/* login bar link colour */
 
 #tabhead .login a, #tabhead .login a:visited {
-  color: #8e878a;
+  color: rgba(255,255,255,0.68);
 }
 
-/* login bar link hover colour */
-
 #tabhead .login a:hover {
-  color: #6c6769;
+  color: rgba(255,255,255,0.88);
 }
 
 ul.errorlist {
@@ -287,14 +264,7 @@ div.profile_info p {
 #subnav {
   margin: 0;
   padding: 0;
-
-
-/*
-
-border-bottom: 1px solid #9BC;
-  color: #6c6769;
-  background-color: #6c6769;
-  */
+  background: #fff;
 }
 
 #subnav ul {
@@ -359,25 +329,36 @@ div.notice_settings h2 {
   margin: 0;
 }
 
-/* if width will be 100% horizontal scrollbar will apear when scroll mode will be used */
-
-/*width: 100%;*/
-
-/* 
-    it is 
-
-very important, if line-height not setted or setted 
-    in relative units scroll will be broken in firefox
-    */
-
 .ac_results li {
   margin: 0px;
   padding: 2px 5px;
   cursor: default;
   display: block;
-  font: menu;
+  /*
+
+if
+
+width will be 100% horizontal scrollbar will apear 
+    when scroll mode will be used
+    */
+    
+
+/*
+
+width: 1
+
+00%;*/
+    font: menu;
   font-size: 12px;
-  line-height: 16px;
+  /* 
+
+
+it is 
+
+very important, if line-height not setted or setted 
+    in relative units scroll will be broken in firefox
+    */
+    line-height: 16px;
   overflow: hidden;
 }
 
@@ -519,21 +500,6 @@ p.what_next {
   font-size: 11px;
 }
 
-#basic-form .button {
-  clear: both;
-  width: 125px;
-  height: 31px;
-  text-align: center;
-  line-height: 20px;
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: bold;
-  border: 0 transparent;
-  background: url(button.png) no-repeat;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
 /* Fieldsets */
 
 fieldset {
@@ -569,4 +535,26 @@ legend {
 
 .signupform {
   float: left;
+}
+
+/* form toggle */
+
+.form-toggle p {
+  margin-bottom: 2px;
+}
+
+.form-toggle p span {
+  background: #DEF;
+  padding: 3px 6px;
+  border-top: 1px solid #9BC;
+  border-left: 1px solid #9BC;
+  border-right: 1px solid #9BC;
+  cursor: pointer;
+}
+
+.form-toggle form {
+  padding: 3px 6px;
+  margin: 0;
+  background: #DEF;
+  border: 1px solid #9BC;
 }
