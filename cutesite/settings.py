@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Django settings for basic pinax project.
+# Django settings for complete pinax project.
 
 import os.path
 import pinax
 
-PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PINAX_ROOT = os.path.realpath(os.path.dirname(pinax.__file__))
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
@@ -50,7 +50,7 @@ USE_I18N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "site_media")
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "site_media")
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
@@ -68,6 +68,7 @@ SECRET_KEY = 'NICETRY'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
+    'dbtemplates.loader.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,12 +79,16 @@ MIDDLEWARE_CLASSES = (
     'account.middleware.LocaleMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'django_sorting.middleware.SortingMiddleware',
+    'misc.middleware.SortOrderMiddleware',
+    'djangodblog.middleware.DBLogMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
 )
 
 ROOT_URLCONF = 'cutesite.urls'
 
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), "templates"),
+    os.path.join(PROJECT_ROOT, "templates"),
     os.path.join(PINAX_ROOT, "templates", PINAX_THEME),
 )
 
@@ -100,10 +105,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "account.context_processors.account",
     "misc.context_processors.contact_email",
     "misc.context_processors.site_name",
-
+    "messages.context_processors.inbox",
     "friends_app.context_processors.invitations",
     "misc.context_processors.combined_inbox_count",
-    "messages.context_processors.inbox",
 )
 
 COMBINED_INBOX_COUNT_SOURCES = (
@@ -119,12 +123,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.humanize',
-
+    'django.contrib.markup',
+    
     # external
     'notification', # must be first
     'django_openid',
     'oembed',
     'emailconfirmation',
+    'django_extensions',
+    'robots',
+    'dbtemplates',
     'friends',
     'microblogging',
     'mailer',
@@ -132,34 +140,55 @@ INSTALLED_APPS = (
     'timezones',
     'app_plugins',
     'voting',
-    'announcements',
-    'pagination',
+    'tagging',
+    'bookmarks',
+    'blog',
+    'ajax_validation',
     'photologue',
     'avatar',
-    'timezones',
-    'ajax_validation',
+    'flag',
+    'microblogging',
+    'locations',
     'uni_form',
-
+    'django_sorting',
+    'django_markup',
+    'pagination',
+    'threadedcomments',
+    
     # internal (for now)
+    'analytics',
     'profiles',
     'staticfiles',
     'account',
+    'signup_codes',
 
     'misc',
     'photos',
-    'about',
+    'tag_app',
+    'topics',
+    'groups',
+    
     'django.contrib.admin',
 
-    'poster',
-    'threadedcomments',
 )
 
 ABSOLUTE_URL_OVERRIDES = {
     "auth.user": lambda o: "/profiles/%s/" % o.username,
 }
 
+MARKUP_FILTER_FALLBACK = 'none'
+MARKUP_CHOICES = (
+    ('restructuredtext', u'reStructuredText'),
+    ('textile', u'Textile'),
+    ('markdown', u'Markdown'),
+    ('creole', u'Creole'),
+)
+WIKI_MARKUP_CHOICES = MARKUP_CHOICES
+
 AUTH_PROFILE_MODULE = 'profiles.Profile'
 NOTIFICATION_LANGUAGE_MODULE = 'account.Account'
+
+ACCOUNT_OPEN_SIGNUP = True
 
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
@@ -168,7 +197,51 @@ SITE_NAME = "cuteco.de"
 LOGIN_URL = "/account/login"
 LOGIN_REDIRECT_URLNAME = "what_next"
 
-FEEDUTIL_SUMMARY_LEN = 60*7 # 7 hours
+INTERNAL_IPS = (
+    '127.0.0.1',
+)
+
+ugettext = lambda s: s
+LANGUAGES = (
+    ('en', u'English'),
+    ('de', u'Deutsch'),
+    ('es', u'Español'),
+    ('fr', u'Français'),
+    ('sv', u'Svenska'),
+    ('pt-br', u'Português brasileiro'),
+    ('he', u'עברית'),
+    ('ar', u'العربية'),
+    ('it', u'Italiano'),
+)
+
+# URCHIN_ID = "ua-..."
+
+class NullStream(object):
+    def write(*args, **kwargs):
+        pass
+    writeline = write
+    writelines = write
+
+RESTRUCTUREDTEXT_FILTER_SETTINGS = {
+    'cloak_email_addresses': True,
+    'file_insertion_enabled': False,
+    'raw_enabled': False,
+    'warning_stream': NullStream(),
+    'strip_comments': True,
+}
+
+# if Django is running behind a proxy, we need to do things like use
+# HTTP_X_FORWARDED_FOR instead of REMOTE_ADDR. This setting is used
+# to inform apps of this fact
+BEHIND_PROXY = False
+
+FORCE_LOWERCASE_TAGS = True
+
+WIKI_REQUIRES_LOGIN = True
+
+# Uncomment this line after signing up for a Yahoo Maps API key at the
+# following URL: https://developer.yahoo.com/wsregapp/
+# YAHOO_MAPS_API_KEY = ''
 
 # local_settings.py can be used to override environment-specific settings
 # like database and email that differ between development and production.

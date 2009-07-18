@@ -14,9 +14,18 @@ tweets_feed_dict = {"feed_dict": {
     'with_friends': TweetFeedUserWithFriends,
 }}
 
+if settings.ACCOUNT_OPEN_SIGNUP:
+    signup_view = "account.views.signup"
+else:
+    signup_view = "signup_codes.views.signup"
+
+
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {"template": "homepage.html"}, name="home"),
-
+    
+    url(r'^admin/invite_user/$', 'signup_codes.views.admin_invite_user', name="admin_invite_user"),
+    url(r'^account/signup/$', signup_view, name="acct_signup"),
+    
     (r'^cute/', include('poster.urls')),
 
     (r'^threadedcomments/', include('threadedcomments.urls')),
@@ -24,11 +33,16 @@ urlpatterns = patterns('',
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
     (r'^openid/(.*)', PinaxConsumer()),
+    (r'^bbauth/', include('bbauth.urls')),
+    (r'^authsub/', include('authsub.urls')),
     (r'^profiles/', include('profiles.urls')),
+    (r'^tags/', include('tag_app.urls')),
     (r'^notices/', include('notification.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^announcements/', include('announcements.urls')),
     (r'^invitations/', include('friends_app.urls')),
+    (r'^robots.txt$', include('robots.urls')),
+    (r'^flag/', include('flag.urls')),
 
     (r'^avatar/', include('avatar.urls')),
     (r'^photos/', include('photos.urls')),

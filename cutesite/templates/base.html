@@ -9,8 +9,8 @@
                 zoom: 1; /* trigger hasLayout */
             }
         </style><![endif]-->
-        <link rel="stylesheet" href="{{ MEDIA_URL }}base.css" />
-        <link rel="stylesheet" href="{{ MEDIA_URL }}pinax/css/tabs.css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/base.css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/tabs.css" />
         <link rel="stylesheet" href="{{ MEDIA_URL }}pinax/css/uni-form.css" />
         {% if LANGUAGE_BIDI %}
         <style type="text/css" media="screen">
@@ -38,30 +38,29 @@
             </div>
         {% endif %}
 
-      <div id="container">
         <div id="tabhead">
             <div class="logo" dir="ltr">{% block logo_link_image %}{% endblock %}</div>
             <div class="login">{% block login %}{% endblock %}{% block locale_switcher %}{% endblock %}<div style="text-align: right;"></div></div>
             <div class="tabs" {% block tab_id %}{% endblock %}>{% block tabs %}{% endblock %}</div>
             <div class="right_tab" {% block rtab_id %}{% endblock %}>{% block right_tab %}{% endblock %}</div>
         </div>
-        <div id="subnav" class="clearfix">{% block subnav %}&nbsp;{% endblock %}</div>
+        <div id="subnav" class="clearfix">{% block subnav_base %}{% block subnav %}&nbsp;{% endblock %}{% endblock %}</div>
 
-        <div id="paper">
-          <div id="content">
-
+        {% block body_outer %}
+        <div id="body">
             {% if messages %}
-            <ul id="messages">
-              {% for message in messages %}
-              <li id="message_{{ forloop.counter }}"><a href="#" onclick="$('#message_{{ forloop.counter }}').fadeOut(); return false;"><small>{% trans "clear" %}</small></a> {{ message }}</li>
-              {% endfor %}
-            </ul>
+                <ul id="messages">
+                    {% for message in messages %}
+                    <li id="message_{{ forloop.counter }}"><a href="#" onclick="$('#message_{{ forloop.counter }}').fadeOut(); return false;"><small>{% trans "clear" %}</small></a> {{ message }}</li>
+                    {% endfor %}
+                </ul>
             {% endif %}
 
             {% block body %}
             {% endblock %}
-          </div>
+
         </div>
+        {% endblock %}
 
         <div id="footer">{% block footer %}{% endblock %}</div>
         <script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -72,6 +71,5 @@
         {% block extra_body_base %}
             {% block extra_body %}{% endblock %}
         {% endblock %}
-        </div>
     </body>
 </html>

@@ -1,0 +1,20 @@
+/* @group Code Detail Header */
+
+div.voteTitle h1 {
+  margin-left: 1.0em;
+  padding-left: .5em;
+  display: block;
+}
+
+div.voteTitle code {
+  float: left;
+  font-size: 2em;
+}
+
+#codeSignature h2, #codeSignature h2 a {
+  color: #6CE26C;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+/* @end */

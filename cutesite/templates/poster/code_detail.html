@@ -7,6 +7,7 @@
 {% block head_title %}{{ object.title }}{% endblock %}
 
 {% block extra_head_base %}
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/code_detail.css"/>
   <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shCore.css"/>
   <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shThemeDefault.css"/>
     {% block extra_head %}{% endblock %}
