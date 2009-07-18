@@ -1,7 +1,7 @@
 cuteco.de
 =========
 
-Download the latest pinax-boot.py script (put this at the root directory of the project)::
+Download the latest pinax-boot.py script (put this in the same directory as this README)::
 
     $ curl -O http://github.com/pinax/pinax/raw/master/scripts/pinax-boot.py
 
