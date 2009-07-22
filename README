@@ -1,6 +1,9 @@
 cuteco.de
 =========
 
+Installation
+------------
+
 Download the latest pinax-boot.py script (put this in the same directory as this README)::
 
     $ curl -O http://github.com/pinax/pinax/raw/master/scripts/pinax-boot.py
@@ -15,3 +18,22 @@ The last step to pull down the external apps and libraries. To do this run::
 
     (pinax-env)$ cd ./pinax-env/
     (pinax-env)$ pip install --requirement src/pinax/requirements/external_apps.txt
+
+
+Adding Languages
+----------------
+
+To start testing posting code, you first need to add some languages.
+
+    1. Browse to: http://localhost:8000/admin/poster/
+    2. Next to 'Languages' select '+ Add'
+    3. In a new tab open: http://alexgorbatchev.com/wiki/SyntaxHighlighter:Brushes
+    4. Use this table as a guide for adding a language
+    5. Back in the 'Add Lanuage' page fill in the info based on a lang (JS in this example):
+         ####################################
+         #             Name: Javascript     #
+         #   Highlight Name: jscript        #
+         # Highlight Script: shBrushJScript #
+         #        Mime Type: text/plain     #
+         ####################################
+    6. Save, Then browse to http://localhost:8000/cute/add/
