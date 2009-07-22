@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'timezones',
     'app_plugins',
     'voting',
+    'announcements',
     'tagging',
     'bookmarks',
     'blog',
