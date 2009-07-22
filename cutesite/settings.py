@@ -117,6 +117,9 @@ COMBINED_INBOX_COUNT_SOURCES = (
 )
 
 INSTALLED_APPS = (
+    # cuteco.de
+    'poster',
+
     # included
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,7 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.markup',
-    
+
     # external
     'notification', # must be first
     'django_openid',
@@ -154,7 +157,7 @@ INSTALLED_APPS = (
     'django_markup',
     'pagination',
     'threadedcomments',
-    
+
     # internal (for now)
     'analytics',
     'profiles',
@@ -167,9 +170,9 @@ INSTALLED_APPS = (
     'tag_app',
     'topics',
     'groups',
-    
-    'django.contrib.admin',
+    'about',
 
+    'django.contrib.admin',
 )
 
 ABSOLUTE_URL_OVERRIDES = {
