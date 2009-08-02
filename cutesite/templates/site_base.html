@@ -7,7 +7,9 @@
 {% load analytics %}
 
 {% block extra_head_base %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}pinax/css/topics.css" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/site_tabs.css" />
+    <script type="text/javascript" src="{{ MEDIA_URL }}pinax/js/topics.js"></script>
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
@@ -31,14 +33,19 @@
 {% endcomment %}
 {% endblock %}
 
-{% block right_tab %}
+{% block right_tabs %}
     {% if user.is_authenticated %}
-        <table>
-            <tr>
-                <td class="tab rtab_profile"><div><a href="{% url profile_detail user %}">{% trans "Profile" %}</a></div></td>
-                <td class="tab rtab_notices"><div><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></div></td>
-            </tr>
-        </table>
+        <ul class="tabs">{% spaceless %}
+            <li id="tab_profile"><a href="{% url profile_detail user %}">{% trans "Profile" %}</a></li>
+            <li id="tab_photos"><a href="{% url photos %}">{% trans "Photos" %}</a></li>
+            <li id="tab_blogs"><a href="{% url blog_list_all %}">{% trans "Blogs" %}</a></li>
+            <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
+            <li id="tab_tweets"><a href="{% url tweets_you_follow %}">{% trans "Tweets" %}</a></li>
+            <li id="tab_bookmarks"><a href="{% url all_bookmarks %}">{% trans "Bookmarks" %}</a></li>
+            <li id="tab_swaps"><a href="{% url offer_list_all %}">{% trans "Swaps" %}</a></li>
+            <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
+            <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>
+        {% endspaceless %}</ul>
     {% endif %}
 {% endblock %}
 

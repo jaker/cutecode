@@ -47,7 +47,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -61,7 +61,7 @@ MEDIA_URL = '/site_media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/admin/'
+ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'NICETRY'
@@ -70,7 +70,6 @@ SECRET_KEY = 'NICETRY'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-    'dbtemplates.loader.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,8 +81,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'django_sorting.middleware.SortingMiddleware',
-    'misc.middleware.SortOrderMiddleware',
     'djangodblog.middleware.DBLogMiddleware',
+    'pinax.middleware.security.HideSensistiveFieldsMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
 )
 
@@ -101,15 +100,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
 
+    "pinax.core.context_processors.contact_email",
+    "pinax.core.context_processors.site_name",
+
     "notification.context_processors.notification",
     "announcements.context_processors.site_wide_announcements",
     "account.context_processors.openid",
     "account.context_processors.account",
-    "misc.context_processors.contact_email",
-    "misc.context_processors.site_name",
     "messages.context_processors.inbox",
     "friends_app.context_processors.invitations",
-    "misc.context_processors.combined_inbox_count",
+#    "cutecode.context_processors.combined_inbox_count",
 )
 
 COMBINED_INBOX_COUNT_SOURCES = (
@@ -129,28 +129,29 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.markup',
+    'pinax.templatetags',
 
     # external
     'notification', # must be first
     'django_openid',
-    'oembed',
     'emailconfirmation',
     'django_extensions',
     'robots',
-    'dbtemplates',
     'friends',
-    'microblogging',
     'mailer',
     'messages',
+    'announcements',
+    'oembed',
+    'pagination',
+#    'gravatar',
+    'threadedcomments',
+    'threadedcomments_extras',
     'timezones',
     'app_plugins',
     'voting',
-    'announcements',
+    'voting_extras',
     'tagging',
-    'bookmarks',
-    'blog',
     'ajax_validation',
-    'photologue',
     'avatar',
     'flag',
     'microblogging',
@@ -158,8 +159,6 @@ INSTALLED_APPS = (
     'uni_form',
     'django_sorting',
     'django_markup',
-    'pagination',
-    'threadedcomments',
 
     # internal (for now)
     'analytics',
@@ -167,15 +166,12 @@ INSTALLED_APPS = (
     'staticfiles',
     'account',
     'signup_codes',
-
-    'misc',
-    'photos',
     'tag_app',
     'topics',
     'groups',
-    'about',
 
     'django.contrib.admin',
+
 )
 
 ABSOLUTE_URL_OVERRIDES = {
@@ -195,6 +191,8 @@ AUTH_PROFILE_MODULE = 'profiles.Profile'
 NOTIFICATION_LANGUAGE_MODULE = 'account.Account'
 
 ACCOUNT_OPEN_SIGNUP = True
+ACCOUNT_REQUIRED_EMAIL = False
+ACCOUNT_EMAIL_VERIFICATION = False
 
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
@@ -210,14 +208,6 @@ INTERNAL_IPS = (
 ugettext = lambda s: s
 LANGUAGES = (
     ('en', u'English'),
-    ('de', u'Deutsch'),
-    ('es', u'Español'),
-    ('fr', u'Français'),
-    ('sv', u'Svenska'),
-    ('pt-br', u'Português brasileiro'),
-    ('he', u'עברית'),
-    ('ar', u'العربية'),
-    ('it', u'Italiano'),
 )
 
 # URCHIN_ID = "ua-..."
