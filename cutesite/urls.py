@@ -1,13 +1,14 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.views.generic.simple import direct_to_template
-from account.openid_consumer import PinaxConsumer
+
 from django.contrib import admin
 admin.autodiscover()
 
-import os
-
+from account.openid_consumer import PinaxConsumer
 from microblogging.feeds import TweetFeedAll, TweetFeedUser, TweetFeedUserWithFriends
+
+
 tweets_feed_dict = {"feed_dict": {
     'all': TweetFeedAll,
     'only': TweetFeedUser,
@@ -22,13 +23,11 @@ else:
 
 urlpatterns = patterns('',
     url(r'^$', direct_to_template, {"template": "homepage.html"}, name="home"),
-    
+
     url(r'^admin/invite_user/$', 'signup_codes.views.admin_invite_user', name="admin_invite_user"),
     url(r'^account/signup/$', signup_view, name="acct_signup"),
-    
-    (r'^cute/', include('poster.urls')),
 
-    (r'^threadedcomments/', include('threadedcomments.urls')),
+    (r'^cute/', include('poster.urls')),
 
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
@@ -37,20 +36,18 @@ urlpatterns = patterns('',
     (r'^authsub/', include('authsub.urls')),
     (r'^profiles/', include('profiles.urls')),
     (r'^tags/', include('tag_app.urls')),
+    (r'^invitations/', include('friends_app.urls')),
     (r'^notices/', include('notification.urls')),
     (r'^messages/', include('messages.urls')),
     (r'^announcements/', include('announcements.urls')),
-    (r'^invitations/', include('friends_app.urls')),
-    (r'^robots.txt$', include('robots.urls')),
-    (r'^flag/', include('flag.urls')),
-
-    (r'^avatar/', include('avatar.urls')),
-    (r'^photos/', include('photos.urls')),
-
     (r'^tweets/', include('microblogging.urls')),
-    (r'^tribes/', include('tribes.urls')),
-
+    (r'^comments/', include('threadedcomments.urls')),
+    (r'^robots.txt$', include('robots.urls')),
+    (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^admin/(.*)', admin.site.root),
+    (r'^avatar/', include('avatar.urls')),
+    (r'^flag/', include('flag.urls')),
+    (r'^locations/', include('locations.urls')),
 
     (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
 )
@@ -59,7 +56,6 @@ if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'staticfiles.views.serve')
     )
-
 
 from microblogging.models import Tweet
 

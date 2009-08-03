@@ -81,7 +81,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'django_sorting.middleware.SortingMiddleware',
-    'djangodblog.middleware.DBLogMiddleware',
     'pinax.middleware.security.HideSensistiveFieldsMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
 )
@@ -109,7 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "account.context_processors.account",
     "messages.context_processors.inbox",
     "friends_app.context_processors.invitations",
-#    "cutecode.context_processors.combined_inbox_count",
+#    "social_project.context_processors.combined_inbox_count",
 )
 
 COMBINED_INBOX_COUNT_SOURCES = (
@@ -142,6 +141,7 @@ INSTALLED_APPS = (
     'messages',
     'announcements',
     'oembed',
+    'djangodblog',
     'pagination',
 #    'gravatar',
     'threadedcomments',
