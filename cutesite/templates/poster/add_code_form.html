@@ -6,32 +6,57 @@
 
 {% block content_header %}{% trans "Add some code" %}{% endblock %}
 
-{% block body %}
-
-{% if form.errors %}
-<p class="error">Please correct the errors below:</p>
-{% endif %}
-
-<form method="post" action="">
-<dl>
-<dt><label for="id_title">Title: {% if form.title.errors %}<span class="error">{{ form.title.errors|join:", " }}</span>{% endif %}</label></dt>
-<dd>{{ form.title }}</dd>
-<dt><label for="id_language">Language:</label>  {{ form.language }}{% if form.language.errors %}<span class="error">  {{ form.language.errors|join:", " }}</span>{% endif %}</dt>
-<dt><label for="id_tag_list">Tags: {% if form.tag_list.errors %}<span class="error">{{ form.tag_list.errors|join:", " }}</span>{% endif %} </label></dt>
-<dd>{{ form.tag_list }} Use spaces between tag names, and hyphens for multiple words, like "tag1 tag2 tag3-with-long-name"</dd>
-<dt><label for="id_source">Code: {% if form.source.errors %}<span class="error">{{ form.source.errors|join:", " }}</span>{% endif %}</label></dt>
-<dd>{{ form.source }}</dd>
-<dt><label for="id_description">Description: {% if form.description.errors %}<span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}</label></dt>
-<dd>{{ form.description }}<br />
-
-<dt><input type="submit" value="Save" /></dt>
-</dl>
-</form>
+{% block extra_head_base %}
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/add_code.css"/>
+    {% block extra_head %}{% endblock %}
 {% endblock %}
 
-{% block sidebar %}
-<p>Please be aware of any license on the code you post here..</p>
 
+{% block body %}
 
+  <div id="addcode">
+    {% if form.errors %}
+    <p class="error">Please correct the errors below:</p>
+    {% endif %}
+
+    <h1>Add Something Cute</h1>
+    <form method="post" action="">
+        <p>
+          <label for="id_title">Title{% if form.title.errors %}<span class="error">{{ form.title.errors|join:", " }}</span>{% endif %}</label>
+          {{ form.title }}
+        </p>
+
+        <p>
+          <label for="id_language" id="language">Language</label>
+          {{ form.language }}
+          {% if form.language.errors %}<span class="error">{{ form.language.errors|join:", " }}</span>{% endif %}
+        </p>
+
+        <p>
+          <label for="id_tag_list">Tags <span id="example">(i.e. tag1 tag2 tag3-with-long-name)</span>{% if form.tag_list.errors %}<span class="error">{{ form.tag_list.errors|join:", " }}</span>{% endif %} </label>
+          {{ form.tag_list }}
+        </p>
+
+        <p>
+          <label for="id_source">Code{% if form.source.errors %}<span class="error">{{ form.source.errors|join:", " }}</span>{% endif %}</label>
+          {{ form.source }}
+        </p>
+
+        <p>
+          <label for="id_description">Description{% if form.description.errors %}<span class="error">{{ form.description.errors|join:", " }}</span>{% endif %}</label>
+          {{ form.description }}
+        </p>
+
+      <p><input class="medium pink awesome" type="submit" value="Add This Cutie" /></p>
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block extra_body_base %}
+  <script src="{{ MEDIA_URL }}js/jquery.infieldlabel.min.js" type="text/javascript"></script>
+  <script src="{{ MEDIA_URL }}js/jquery.borderimage.js" type="text/javascript"></script>
+  <script src="{{ MEDIA_URL }}js/addcode.js" type="text/javascript"></script>
+  {% block extra_body %}{% endblock %}
 {% endblock %}
 
