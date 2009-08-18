@@ -14,22 +14,55 @@
 {% endblock %}
 
 {% block body %}
+<div class="detail-paper">
+  <div class="detail-sidebar">
+    <code class="vote-number">21.</code>
+  </div>
 
-<div id="codeSignature">
-  <div class="voteTitle"><code class="voteNumber">21.</code><h1>{{ object.title }}</h1></div>
-  <h2>// Created by <a href="{% url profile_detail object.author %}">{{ object.author }}</a></h2>
+  <!-- The Meat and Potatos -->
+  <div class="code-detail">
+    <div class="detail-header">
+      <div id="code-signature">
+        <div id="code-title">{{ object.title }}</div>
+        <h2>Created by <a href="{% url profile_detail object.author %}">{{ object.author }}</a></h2>
+      </div>
+    </div>
+
+    <div id="detail-content">
+      <p id="description">
+        {{ object.description }}
+      </p>
+
+      <div class="syntax-container">
+        <pre class="brush: {{ object.language.highlight_name }}; footer: false;">
+          {{ object.source }}
+        </pre>
+      </div>
+    </div>
+  </div>
 </div>
+  <!-- End of dinner, back to tupperwear (ie containers) -->
 
-<div id="description">
-  {{ object.description }}
-</div>
+  <div class="code-detail-comments">
+    {% load comments_tag %}
+    {% comments object %}
 
-<pre class="brush: {{ object.language.highlight_name }}">
-  {{ object.source }}
-</pre>
-
+    <ul>
+      {% if user.is_authenticated %}
+      {% ifequal user.id object.author.id %}
+      <li><a href="/cute/edit/{{ object.id }}/">edit</a></li>
+      {% endifequal %}
+      <li>rate</li>
+      <li>favorite</li>
+      <li>comment</li>
+      {% endif  %}
+      {% endblock %}
+  </div>
 
 {% block extra_body_base %}
+  <script src="{{ MEDIA_URL }}js/jquery.borderimage.js" type="text/javascript"></script>
+  <script src="{{ MEDIA_URL }}js/codedetail.js" type="text/javascript"></script>
+
   <script src="{{ MEDIA_URL }}js/comments.js" type="text/javascript"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/shCore.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/{{ object.language.highlight_script }}.js"></script>
@@ -37,20 +70,3 @@
   {% block extra_body %}{% endblock %}
 {% endblock %}
 
-
-{% load comments_tag %}
-
-{% comments object %}
-
-
-
-<ul>
-{% if user.is_authenticated %}
-{% ifequal user.id object.author.id %}
-<li><a href="/cute/edit/{{ object.id }}/">edit</a></li>
-{% endifequal %}
-<li>rate</li>
-<li>favorite</li>
-<li>comment</li>
-{% endif  %}
-{% endblock %}

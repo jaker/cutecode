@@ -5,8 +5,6 @@ body {
   color: #333;
   font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
   font-size: 10pt;
-  width: 1000px;
-  min-height: 1000px;
   margin: auto;
   padding: 0px 30px;
 }
@@ -42,16 +40,16 @@ td {
 
 div#body {
   clear: both;
-  padding: 10px;
-  background: #fff;
-  padding-bottom: 0px;
   color: #172337;
   font-size: 11px;
   line-height: 1.6em;
   border-style: none;
-  border-color: #2a2a2a;
-  border-left: 1px dotted #999697;
-  border-right: 1px dotted #999697;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 70em;
 }
 
 div#paper {
@@ -64,9 +62,7 @@ div#paper {
 
 #footer {
   color: #999;
-  
-
-/*
+  /*
 
 footer text colour */
     margin: 50px auto;
@@ -77,6 +73,8 @@ footer text colour */
 
 #footer a, #footer a:visited {
   color: #444;
+
+
 /*
 
 footer link colour */
@@ -84,6 +82,8 @@ footer link colour */
 
 #footer a:hover {
   color: #777;
+
+
 /*
 
 footer link hover colour */
@@ -148,12 +148,20 @@ input[type="text"], input[type="password"], textarea {
   top: 0px;
   right: 0;
   padding: 10px;
-  -moz-border-radius-bottomleft: 0.25em;
+  
+
+/*
+
+-moz-border-radius-bottomleft: 0.25em;
   -moz-border-radius-bottomright: 0.25em;
   -webkit-border-bottom-left-radius: 0.25em;
-  -webkit-border-bottom-right-radius: 0.25em;
+  -webkit-border-bottom-right-radius: 0.25em;*/
   background-color: rgba(125,121,123,0.59);
   color: rgba(255,255,255,0.68);
+}
+
+#detail-container {
+  margin-left: 10%;
 }
 
 #tabhead .login a, #tabhead .login a:visited {
@@ -265,6 +273,7 @@ div.profile_info p {
   margin: 0;
   padding: 0;
   background: #fff;
+  visibility: hidden;
 }
 
 #subnav ul {
@@ -334,7 +343,9 @@ div.notice_settings h2 {
   padding: 2px 5px;
   cursor: default;
   display: block;
-  /*
+  
+
+/*
 
 if
 
@@ -343,6 +354,10 @@ width will be 100% horizontal scrollbar will apear
     */
     
 
+
+
+
+
 /*
 
 width: 1
@@ -350,7 +365,9 @@ width: 1
 00%;*/
     font: menu;
   font-size: 12px;
-  /* 
+  
+
+/* 
 
 
 it is 
