@@ -7,9 +7,9 @@
 {% block head_title %}{{ object.title }}{% endblock %}
 
 {% block extra_head_base %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/code_detail.css"/>
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shCore.css"/>
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}js/syntaxhighlighter/styles/shThemeDefault.css"/>
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/code_detail.css"/>
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/syntaxhighlighter/styles/shCore.css"/>
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/syntaxhighlighter/styles/shThemeDefault.css"/>
     {% block extra_head %}{% endblock %}
 {% endblock %}
 
@@ -60,13 +60,13 @@
   </div>
 
 {% block extra_body_base %}
-  <script src="{{ MEDIA_URL }}js/jquery.borderimage.js" type="text/javascript"></script>
-  <script src="{{ MEDIA_URL }}js/codedetail.js" type="text/javascript"></script>
+  <script src="{{ STATIC_URL }}js/jquery.borderimage.js" type="text/javascript"></script>
+  <script src="{{ STATIC_URL }}js/codedetail.js" type="text/javascript"></script>
 
-  <script src="{{ MEDIA_URL }}js/comments.js" type="text/javascript"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/shCore.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/syntaxhighlighter/scripts/{{ object.language.highlight_script }}.js"></script>
-  <script type="text/javascript">SyntaxHighlighter.config.clipboardSwf = '{{ MEDIA_URL }}js/syntaxhighlighter/scripts/clipboard.swf';SyntaxHighlighter.all();</script>
+  <script src="{{ STATIC_URL }}js/comments.js" type="text/javascript"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/syntaxhighlighter/scripts/shCore.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/syntaxhighlighter/scripts/{{ object.language.highlight_script }}.js"></script>
+  <script type="text/javascript">SyntaxHighlighter.config.clipboardSwf = '{{ STATIC_URL }}js/syntaxhighlighter/scripts/clipboard.swf';SyntaxHighlighter.all();</script>
   {% block extra_body %}{% endblock %}
 {% endblock %}
 

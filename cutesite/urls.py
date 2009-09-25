@@ -52,10 +52,12 @@ urlpatterns = patterns('',
     (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
 )
 
+"""
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'staticfiles.views.serve')
     )
+"""
 
 from microblogging.models import Tweet
 
@@ -73,5 +75,5 @@ urlpatterns += patterns('',
 
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'staticfiles.views.serve')
+        (r'^site_media/', include('staticfiles.urls')),
     )
