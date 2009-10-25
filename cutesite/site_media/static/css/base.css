@@ -522,7 +522,7 @@ p.what_next {
 fieldset {
   padding: 20px;
   margin: 0 0 1.5em 0;
-  border: 2px solid #ddd;
+  border: 0px
 }
 
 legend {
@@ -650,7 +650,7 @@ legend {
 }
 
 .pink.awesome, .pink.awesome:visited {
-  background-color: #F04881;
+  background-color: #eb477e;
 }
 
 .magenta.awesome:hover {

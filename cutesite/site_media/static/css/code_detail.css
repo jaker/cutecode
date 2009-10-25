@@ -65,3 +65,29 @@ div.syntax-container {
 .syntaxhighlighter {
 	margin: 0 !important;
 }
+
+.code-detail-comments {
+  background-color: #3e3e3e;
+  margin-top: 3em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+ul.responses li {
+  padding: 2em;
+}
+
+form.hidden {
+  display: none;
+}
+
+li.even.thread-0 {
+  background-color: #4f4f4f;
+}
+
+ul.responses {
+  list-style-type: none;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+}

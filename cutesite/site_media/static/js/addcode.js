@@ -5,7 +5,7 @@ $(document).ready(function () {
     if(i=="mozilla" && jQuery.browser.version.substr(0,5)=="1.9.0") {
       // Figure out something for Camino 2.1
     } else {
-      $('#addcode').borderImage('url(/site_media/images/border.png) 33% round');
+      $('#addcode').borderImage('url(/site_media/static/images/border.png) 33% round');
     }
     });
 });
