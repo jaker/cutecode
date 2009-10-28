@@ -162,7 +162,7 @@ INSTALLED_APPS = (
     'threadedcomments',
     'threadedcomments_extras',
     'timezones',
-#    'app_plugins',
+    'app_plugins',
     'voting',
     'voting_extras',
     'tagging',
@@ -190,7 +190,7 @@ INSTALLED_APPS = (
 )
 
 ABSOLUTE_URL_OVERRIDES = {
-    "auth.user": lambda o: "/profiles/%s/" % o.username,
+    "auth.user": lambda o: "/profiles/profile/%s/" % o.username,
 }
 
 MARKUP_FILTER_FALLBACK = 'none'
