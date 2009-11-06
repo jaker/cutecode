@@ -20,20 +20,24 @@ The last step to pull down the external apps and libraries. To do this run::
     (pinax-env)$ pip install --requirement src/pinax/requirements/external_apps.txt
 
 
+Initial Setup
+-------------
+
+Setup the database, like in any other Django project.
+
+    (pinax-env)$ cd ./cutesite/
+    (pinax-env)$ python manage.py syncdb
+    (pinax-env)$ python manage.py runserver
+
+
 Adding Languages
 ----------------
 
-To start testing posting code, you first need to add some languages.
+Add some languages to the database to test with. Run this script in the 'cutesite' directory.
 
-    1. Browse to: http://localhost:8000/admin/poster/
-    2. Next to 'Languages' select '+ Add'
-    3. In a new tab open: http://alexgorbatchev.com/wiki/SyntaxHighlighter:Brushes
-    4. Use this table as a guide for adding a language
-    5. Back in the 'Add Lanuage' page fill in the info based on a lang (JS in this example):
-         ####################################
-         #             Name: Javascript     #
-         #   Highlight Name: jscript        #
-         # Highlight Script: shBrushJScript #
-         #        Mime Type: text/plain     #
-         ####################################
-    6. Save, Then browse to http://localhost:8000/cute/add/
+    (pinax-env)$ python ../scripts/initalsetup.py
+
+
+Testing
+-------
+    1. Browse to http://localhost:8000/cute/add/
