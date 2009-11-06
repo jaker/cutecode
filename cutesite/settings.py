@@ -162,7 +162,6 @@ INSTALLED_APPS = (
     'threadedcomments',
     'threadedcomments_extras',
     'timezones',
-    'app_plugins',
     'voting',
     'voting_extras',
     'tagging',
