@@ -1,3 +1,3 @@
 $(document).ready(function () {
-  $("#tabhead .login").corners("0.25em bottom");
+  $("#tabhead .login").corner("0.5em bottom");
 });
