@@ -1,17 +1,45 @@
 {% extends "site_base.html" %}
 
 {% load i18n %}
+{% load voting_tags %}
+{% votes_by_user user on object_list as vote_dict %}
+{% scores_for_objects object_list as score_dict %}
+
 
 {% block head_title %}{% trans "Code List" %}{% endblock %}
 
 {% block body %}
 
 {% if object_list %}
+
 <ul>
   {% for code in object_list %}
   <li><a href="{{ code.get_absolute_url }}">{{ code.title }}</a> (<a href="{{ code.language.get_absolute_url }}">{{ code.language.name }}</a>) by <a href="/profiles/profile/{{ code.author.username }}/">{{ code.author.username }}</a> {{ code.submitted|timesince }} ago</li>
+
+      {% dict_entry_for_item code from vote_dict as vote %}
+      {% score_for_object code as score %}
+
+        <span class="score" id="codescore{{ code.id }}"
+              title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
+         {{ score.score|default:0 }} point{{ score.score|default:0|pluralize }}
+        </span>
+
+
+      <form class="linkvote" id="linkup{{ code.id }}" action="{{ code.id }}/{% if vote and vote.is_upvote %}clear{% else %}up{% endif %}vote/" method="POST">
+        <input type="submit" id="linkuparrow{{ code.id }}" value="++">
+      </form>
+
+      <form class="linkvote" id="linkdown{{ code.id }}" action="{{ code.id }}/{% if vote and vote.is_downvote %}clear{% else %}down{% endif %}vote/" method="POST">
+        <input type="submit" id="linkdownarrow{{ code.id }}" value="--">
+      </form>
+
+
   {% endfor %}
 </ul>
+
+
+
+
 <p class="pagination">{% if has_previous %}<a href="?page={{ previous }}">&lt; Previous {{ results_per_page }}</a>{% endif %}  {% if has_next %}<a href="?page={{ next }}">Next {{ results_per_page }} &gt;</a>{% endif %}
   {% else %}
 <p>No code posted yet.</p>
