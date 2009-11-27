@@ -1,7 +1,7 @@
 {% extends "site_base.html" %}
 
 {% load humanize %}
-
+{% load voting_tags %}
 
 {% block title %}{% endblock %}
 {% block head_title %}{{ object.title }}{% endblock %}
@@ -16,7 +16,17 @@
 {% block body %}
 <div class="detail-paper">
   <div class="detail-sidebar">
-    <code class="vote-number">21.</code>
+    <!-- Voting -->
+    {% dict_entry_for_item object from vote_dict as vote %}
+    {% score_for_object object as score %}
+
+    <code class="vote-number" id="{{ object.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
+      {{ score.score|default:0 }}
+    </code>
+    <div class="vote-buttons">
+      <a class="vote{% if vote and vote.is_downvote %}:hidden{% else %}{% endif %}" href="#" id="doubleplusgood">++</a>
+      <a class="vote{% if vote and vote.is_upvote %}:hidden{% else %}{% endif %}" href="#" id="ungood">--</a>
+    </div>
   </div>
 
   <!-- The Meat and Potatos -->
