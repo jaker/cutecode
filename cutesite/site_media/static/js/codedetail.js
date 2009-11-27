@@ -32,7 +32,7 @@ CodeDetail.chooseVote = function(event) {
     var postURL = codeID + "/upvote/";
     $.post(postURL, null, CodeDetail.updateScore, "json");
   } else {
-    voteDown.fadeOut("fast",CodeDetail.voteCallback($(this)));
+    voteUp.fadeOut("fast",CodeDetail.voteCallback($(this)));
 
     var postDownURL = codeID + "/downvote/";
     $.post(postDownURL, null, CodeDetail.updateScore, "json");
