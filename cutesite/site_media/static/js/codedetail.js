@@ -42,7 +42,7 @@ CodeDetail.chooseVote = function(event) {
     $.post(postURL, null, CodeDetail.updateScore, "json");
     //TODO: Make this code tighter and more generic
   } else {
-    var downAction = "/upvote/";
+    var downAction = "/downvote/";
 
     if ($(this).hasClass(CodeDetail.selected)) {
       downAction = "/clearvote/";
