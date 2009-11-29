@@ -3,9 +3,6 @@
 {% load humanize %}
 {% load voting_tags %}
 
-{% votes_by_user user on object as vote_dict %}
-{% scores_for_objects object as score_dict %}
-
 {% block title %}{% endblock %}
 {% block head_title %}{{ object.title }}{% endblock %}
 
@@ -20,15 +17,15 @@
 <div class="detail-paper">
   <div class="detail-sidebar">
     <!-- Voting -->
-    {% vote_by_user user on object as vote %}
+    {% dict_entry_for_item object from vote_dict as vote %}
     {% score_for_object object as score %}
 
     <code class="vote-number" id="{{ object.id }}" title="after {{ score.num_votes|default:0 }} vote{{ score.num_votes|default:0|pluralize }}">
       {{ score.score|default:0 }}
     </code>
-    <div id="vote-buttons">
-      <a class="vote {% if vote and vote.is_upvote %}selectedvote{% else %}{% if vote and vote.is_downvote %}hiddenvote{% endif %}{% endif %}" href="#" id="doubleplusgood">++</a>
-      <a class="vote {% if vote and vote.is_downvote %}selectedvote{% else %}{% if vote and vote.is_upvote %}hiddenvote{% endif %}{% endif %}" href="#" id="ungood">--</a>
+    <div class="vote-buttons">
+      <a class="vote{% if vote and vote.is_downvote %}:hidden{% else %}{% endif %}" href="#" id="doubleplusgood">++</a>
+      <a class="vote{% if vote and vote.is_upvote %}:hidden{% else %}{% endif %}" href="#" id="ungood">--</a>
     </div>
   </div>
 

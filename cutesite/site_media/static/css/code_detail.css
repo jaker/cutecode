@@ -20,7 +20,7 @@ code.vote-number {
   text-align: right;
 }
 
-#vote-buttons {
+.vote-buttons {
   display: inline-block;
   font-size: 1.45em;
   width: 1.15em;
@@ -29,21 +29,13 @@ code.vote-number {
   line-height: 0.75em;
 }
 
-.vote.selectedvote {
-  bottom: 0.5em;
-}
-
-#vote-buttons > a {
+.vote-buttons > a {
   text-decoration: none;
   font-weight: bold;
 }
 
 #doubleplusgood, #ungood {
   position: relative;
-}
-
-.hiddenvote {
-  display: none;
 }
 
 div.detail-sidebar {
@@ -73,9 +65,7 @@ div#code-title {
 }
 
 
-/*
-
- @end */
+/* @end */
 
 /* @g
 
