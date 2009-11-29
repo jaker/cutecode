@@ -1,6 +1,7 @@
 var CodeDetail = {};
-var voteUp = $("#doubleplusgood");
-var voteDown = $("#ungood");
+CodeDetail.voteUp = $("#doubleplusgood");
+CodeDetail.voteDown = $("#ungood");
+CodeDetail.selected = "selectedvote";
 
 
 $(document).ready(function () {
@@ -14,8 +15,8 @@ $(document).ready(function () {
 
   $("input[type='submit']").addClass("small awesome");
 
-  voteUp.click(CodeDetail.chooseVote);
-  voteDown.click(CodeDetail.chooseVote);
+  CodeDetail.voteUp.click(CodeDetail.chooseVote);
+  CodeDetail.voteDown.click(CodeDetail.chooseVote);
 });
 
 
@@ -25,23 +26,39 @@ CodeDetail.chooseVote = function(event) {
   var codeID = $("code.vote-number").attr("id");
 
   //run the effect
-  if (this.id === "doubleplusgood") {
-    voteDown.fadeOut("fast",CodeDetail.voteCallback($(this)));
+  if ($(this).attr("id") === "doubleplusgood") {
+    var upAction = "/upvote/";
 
+    // Clear the vote if we already voted up
+    if ($(this).hasClass(CodeDetail.selected)) {
+      upAction = "/clearvote/";
+      $("#vote-buttons > a").removeClass(CodeDetail.selected);
+      CodeDetail.voteDown.fadeIn("fast");
+    } else {
+      CodeDetail.voteDown.fadeOut("fast",CodeDetail.voteCallback($(this)));
+    }
 
-    var postURL = codeID + "/upvote/";
+    var postURL = codeID + upAction;
     $.post(postURL, null, CodeDetail.updateScore, "json");
+    //TODO: Make this code tighter and more generic
   } else {
-    voteUp.fadeOut("fast",CodeDetail.voteCallback($(this)));
+    var downAction = "/upvote/";
 
-    var postDownURL = codeID + "/downvote/";
+    if ($(this).hasClass(CodeDetail.selected)) {
+      downAction = "/clearvote/";
+      $("#vote-buttons > a").removeClass(CodeDetail.selected);
+      CodeDetail.voteUp.fadeIn("fast");
+    } else {
+      CodeDetail.voteUp.fadeOut("fast",CodeDetail.voteCallback($(this)));
+    }
+
+    var postDownURL = codeID + downAction;
     $.post(postDownURL, null, CodeDetail.updateScore, "json");
   }
 };
 
 CodeDetail.animateVote = function(element) {
- element.animate({
-   bottom: "0.5em"}, 500 );
+  element.toggleClass(CodeDetail.selected);
 };
 
 //callback function to bring a hidden box back
