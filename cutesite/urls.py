@@ -8,6 +8,12 @@ admin.autodiscover()
 from account.openid_consumer import PinaxConsumer
 from microblogging.feeds import TweetFeedAll, TweetFeedUser, TweetFeedUserWithFriends
 
+from feeds import LatestEntries
+
+feeds = {
+  'latest': LatestEntries,
+#  'languages': LatestEntriesByLanguage,
+}
 
 tweets_feed_dict = {"feed_dict": {
     'all': TweetFeedAll,
@@ -50,6 +56,7 @@ urlpatterns = patterns('',
     (r'^locations/', include('locations.urls')),
 
     (r'^feeds/tweets/(.*)/$', 'django.contrib.syndication.views.feed', tweets_feed_dict),
+    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
 )
 
 from microblogging.models import Tweet
